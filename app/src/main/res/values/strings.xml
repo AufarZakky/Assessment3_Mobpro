@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Mobpro 1</string>
+    <string name="gambar">gambar %1$s</string>
 </resources>
