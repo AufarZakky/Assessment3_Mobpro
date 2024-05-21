@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -44,7 +45,9 @@ fun ScreenContent(modifier: Modifier) {
     val data by viewModel.data
 
     LazyVerticalGrid(
-        modifier = modifier.fillMaxSize().padding(4.dp),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(4.dp),
         columns = GridCells.Fixed(2)
     ) {
         items(data) { ListItem(hewan = it) }
@@ -54,7 +57,9 @@ fun ScreenContent(modifier: Modifier) {
 @Composable
 fun ListItem(hewan: Hewan) {
     Box(
-        modifier = Modifier.padding(4.dp).border(1.dp, Color.Gray),
+        modifier = Modifier
+            .padding(4.dp)
+            .border(1.dp, Color.Gray),
         contentAlignment = Alignment.BottomCenter
     ) {
         AsyncImage(
@@ -64,10 +69,15 @@ fun ListItem(hewan: Hewan) {
                 .build(),
             contentDescription = stringResource(R.string.gambar, hewan.nama),
             contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxWidth().padding(4.dp)
+            placeholder = painterResource(id = R.drawable.loading_img),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp)
         )
         Column(
-            modifier = Modifier.fillMaxWidth().padding(4.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp)
                 .background(Color(red = 0f, green = 0f, blue = 0f, alpha = 0.5f))
                 .padding(4.dp)
         ) {
