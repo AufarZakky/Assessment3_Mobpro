@@ -43,10 +43,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
+import androidx.credentials.exceptions.ClearCredentialException
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
@@ -179,6 +181,19 @@ private suspend fun signIn(context: Context, dataStore: UserDataStore) {
     }
 }
 
+private suspend fun signOut(context: Context, dataStore: UserDataStore) {
+    try {
+        val credentialManager = CredentialManager.create(context)
+        credentialManager.clearCredentialState(
+            ClearCredentialStateRequest()
+        )
+        dataStore.saveData(User())
+    } catch (e: ClearCredentialException) {
+        Log.e("SIGN-IN", "Error: ${e.errorMessage}")
+    }
+}
+
+
 private suspend fun handleSignIn(result: GetCredentialResponse, dataStore: UserDataStore) {
     val credential = result.credential
     if (credential is CustomCredential &&
@@ -240,6 +255,7 @@ fun MainScreen() {
         if (showDialog) {
             ProfilDialog(user = user,
                 onDismissRequest = { showDialog = false}) {
+                CoroutineScope(Dispatchers.IO).launch { signOut(context, dataStore) }
                 showDialog = false
             }
         }

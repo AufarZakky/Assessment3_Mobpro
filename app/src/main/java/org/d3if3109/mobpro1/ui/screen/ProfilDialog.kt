@@ -81,16 +81,16 @@ fun ProfilDialog(
                     ) {
                         Text(stringResource(R.string.tutup))
                     }
-//                    OutlinedButton(
-//                        onClick = { onConfirmation() },
-//                        modifier = Modifier.padding(8.dp),
-//                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.error)
-//                    ) {
-//                        Text(
-//                            text = stringResource(R.string.logout),
-//                            color = MaterialTheme.colorScheme.error
-//                        )
-//                    }
+                    OutlinedButton(
+                        onClick = { onConfirmation() },
+                        modifier = Modifier.padding(8.dp),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.error)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.logout),
+                            color = MaterialTheme.colorScheme.error
+                        )
+                    }
                 }
             }
         }
