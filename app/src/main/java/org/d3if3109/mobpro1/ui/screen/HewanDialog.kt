@@ -37,28 +37,30 @@ fun HewanDialog(
     bitmap: Bitmap?,
     onDismissRequest: () -> Unit,
     onConfirmation: (String, String) -> Unit
-) {
+){
     var nama by remember { mutableStateOf("") }
     var namaLatin by remember { mutableStateOf("") }
 
-    Dialog(onDismissRequest = { onDismissRequest() }) {
-        Card(
+    Dialog(onDismissRequest = {onDismissRequest() }) {
+        Card (
             modifier = Modifier.padding(16.dp),
             shape = RoundedCornerShape(16.dp),
-        ) {
+        ){
             Column(
                 modifier = Modifier.padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
+            ){
                 Image(
                     bitmap = bitmap!!.asImageBitmap(),
                     contentDescription = null,
-                    modifier = Modifier.fillMaxWidth().aspectRatio(1f)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f)
                 )
                 OutlinedTextField(
                     value = nama,
-                    onValueChange = { nama = it },
-                    label = { Text(text = stringResource(id = R.string.nama)) },
+                    onValueChange = {nama = it},
+                    label = { Text(text = stringResource(id = R.string.nama))},
                     maxLines = 1,
                     keyboardOptions = KeyboardOptions(
                         capitalization = KeyboardCapitalization.Words,
@@ -68,8 +70,8 @@ fun HewanDialog(
                 )
                 OutlinedTextField(
                     value = namaLatin,
-                    onValueChange = { namaLatin = it },
-                    label = { Text(text = stringResource(id = R.string.nama_latin)) },
+                    onValueChange = {namaLatin = it},
+                    label = { Text(text = stringResource(id = R.string.nama_latin))},
                     maxLines = 1,
                     keyboardOptions = KeyboardOptions(
                         capitalization = KeyboardCapitalization.Sentences,
@@ -77,12 +79,14 @@ fun HewanDialog(
                     ),
                     modifier = Modifier.padding(top = 8.dp)
                 )
-                Row(
-                    modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+                Row (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp),
                     horizontalArrangement = Arrangement.Center
-                ) {
+                ){
                     OutlinedButton(
-                        onClick = { onDismissRequest() },
+                        onClick = {onDismissRequest()},
                         modifier = Modifier.padding(8.dp)
                     ) {
                         Text(text = stringResource(R.string.batal))
