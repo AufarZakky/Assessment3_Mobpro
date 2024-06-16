@@ -1,17 +1,19 @@
 <resources>
-    <string name="app_name">Mobpro 1</string>
-    <string name="gambar">gambar %1$s</string>
-    <string name="error">gagal memuat data... koneksi error.</string>
+    <string name="app_name">AnimalSnap</string>
+    <string name="Tambah_data">"Tekan + untuk abadikan hewan disekitarmu!"</string>
+    <string name="error">Gagal memuat data.. Koneksi error.</string>
     <string name="try_again">Coba lagi</string>
     <string name="profil">Profil</string>
     <string name="tutup">Tutup</string>
-    <string name="logout">logout</string>
+    <string name="logout">Log Out</string>
     <string name="tambah_hewan">Tambah Hewan</string>
-    <string name="nama">Nama</string>
-    <string name="nama_latin">Nama latin</string>
+    <string name="description">Deskripsi</string>
+    <string name="nama">Nama Hewan</string>
     <string name="batal">Batal</string>
     <string name="simpan">Simpan</string>
-    <string name="delete">Hapus</string>
-    <string name="cancel">Batal</string>
-    <string name="confirm_delete">Hapuss</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="konfirmasi_hapus">Hapus item</string>
+    <string name="pesan_konfirmasi_hapus">Anda yakin ingin menghapus item ini?</string>
+    <string name="startscreen">Selamat Datang\n</string>
+    <string name="startscreen1">Ayo abadikan hewan-hewan disekitarmu!</string>
 </resources>

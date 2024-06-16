@@ -36,12 +36,11 @@ import org.d3if3109.mobpro1.ui.theme.Mobpro1Theme
 fun HewanDialog(
     bitmap: Bitmap?,
     onDismissRequest: () -> Unit,
-    onConfirmation: (String, String) -> Unit
+    onConfirmation: (String) -> Unit
 ){
-    var nama by remember { mutableStateOf("") }
-    var namaLatin by remember { mutableStateOf("") }
+    var description by remember { mutableStateOf("") }
 
-    Dialog(onDismissRequest = {onDismissRequest() }) {
+    Dialog(onDismissRequest = { onDismissRequest() }) {
         Card (
             modifier = Modifier.padding(16.dp),
             shape = RoundedCornerShape(16.dp),
@@ -58,24 +57,13 @@ fun HewanDialog(
                         .aspectRatio(1f)
                 )
                 OutlinedTextField(
-                    value = nama,
-                    onValueChange = {nama = it},
-                    label = { Text(text = stringResource(id = R.string.nama))},
+                    value = description,
+                    onValueChange = { description = it },
+                    label = { Text(text = stringResource(id = R.string.nama)) },
                     maxLines = 1,
                     keyboardOptions = KeyboardOptions(
                         capitalization = KeyboardCapitalization.Words,
                         imeAction = ImeAction.Next
-                    ),
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-                OutlinedTextField(
-                    value = namaLatin,
-                    onValueChange = {namaLatin = it},
-                    label = { Text(text = stringResource(id = R.string.nama_latin))},
-                    maxLines = 1,
-                    keyboardOptions = KeyboardOptions(
-                        capitalization = KeyboardCapitalization.Sentences,
-                        imeAction = ImeAction.Done
                     ),
                     modifier = Modifier.padding(top = 8.dp)
                 )
@@ -86,14 +74,14 @@ fun HewanDialog(
                     horizontalArrangement = Arrangement.Center
                 ){
                     OutlinedButton(
-                        onClick = {onDismissRequest()},
+                        onClick = { onDismissRequest() },
                         modifier = Modifier.padding(8.dp)
                     ) {
                         Text(text = stringResource(R.string.batal))
                     }
                     OutlinedButton(
-                        onClick = { onConfirmation(nama, namaLatin) },
-                        enabled = nama.isNotEmpty() && namaLatin.isNotEmpty(),
+                        onClick = { onConfirmation(description) },
+                        enabled = description.isNotEmpty(),
                         modifier = Modifier.padding(8.dp)
                     ) {
                         Text(text = stringResource(R.string.simpan))
@@ -104,15 +92,16 @@ fun HewanDialog(
     }
 }
 
-@Preview(showBackground = true)
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
-@Composable
-fun AddDialogPreview() {
-    Mobpro1Theme {
-        HewanDialog(
-            bitmap = null,
-            onDismissRequest = {},
-            onConfirmation = { _, _ -> }
-        )
-    }
-}
+
+//@Preview(showBackground = true)
+//@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+//@Composable
+//fun AddDialogPreview() {
+//    Mobpro1Theme {
+//        HewanDialog(
+//            bitmap = null,
+//            onDismissRequest = {},
+//            onConfirmation = { _, _ -> }
+//        )
+//    }
+//}

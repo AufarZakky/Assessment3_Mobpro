@@ -29,7 +29,7 @@ class MainViewModel: ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             status.value = ApiStatus.LOADING
             try {
-                data.value = HewanApi.service.getHewan(userId)
+                data.value = HewanApi.service.getHewan(userId).data
                 status.value = ApiStatus.SUCCESS
             } catch (e: Exception) {
                 Log.d("MainViewModel", "Failure: ${e.message}")
@@ -37,40 +37,36 @@ class MainViewModel: ViewModel() {
             }
         }
     }
-    fun saveData(userId: String, nama: String, namaLatin: String, bitmap: Bitmap){
+    fun saveData(userId: String, description: String, bitmap: Bitmap){
         viewModelScope.launch (Dispatchers.IO){
             try {
                 val result = HewanApi.service.postHewan(
-                    userId,
-                    nama.toRequestBody("text/plain".toMediaTypeOrNull()),
-                    namaLatin.toRequestBody("text/plain".toMediaTypeOrNull()),
-                    bitmap.toMultipartBody()
+                    bitmap.toMultipartBody(),
+                    userId.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    description.toRequestBody("text/plain".toMediaTypeOrNull()),
                 )
-                if (result.status == "success")
+
+                if (result.statusCode == 201 )
                     retrieveData(userId)
                 else
                     throw Exception(result.message)
             }catch (e: Exception) {
-                Log.d("MainViewModel", "Failure: ${e.message}")
+                Log.d("MainViewModel.saveData", e.toString())
+                Log.d("MainViewModel.saveData", "Failure: ${e.message}")
                 errorMessage.value = "Error: ${e.message}"
             }
         }
     }
 
-    fun deleteData(userId: String, hewanId: String) {
-        viewModelScope.launch(Dispatchers.IO){
+    fun deleteData(userEmail: String, imageId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                Log.d("MainViewModel", "Attempting to delete hewan with ID: $hewanId using user ID: $userId")
-                val result = HewanApi.service.deleteHewan(userId, hewanId)
-                Log.d("MainViewModel", "API Response: status=${result.status}, message=${result.message}")
-                if (result.status == "success")
-                    retrieveData(userId)
-                else
-                    throw Exception(result.message)
-            }catch (e: Exception) {
-                Log.d("MainViewModel", "Failure: ${e.message}")
+                val result = HewanApi.service.deleteHewan(imageId,)
+                if (result.statusCode == 200) retrieveData(userEmail)
+                else throw Exception(result.message)
+            } catch (e: Exception) {
+                Log.d("MainViewModel.deleteData", "Failure: ${e.message}")
                 errorMessage.value = "Error: ${e.message}"
-
             }
         }
     }

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">AnimalSnap</string>
+    <string name="Tambah_data">Press + to capture animals around you!</string>
+    <string name="error">Failed to load data.. Connection error.</string>
+    <string name="try_again">Try Again</string>
+    <string name="profil">Profile</string>
+    <string name="tutup">Close</string>
+    <string name="logout">Log Out</string>
+    <string name="tambah_hewan">Add Animal</string>
+    <string name="description">Description</string>
+    <string name="nama">Animal Name</string>
+    <string name="batal">Cancel</string>
+    <string name="simpan">Save</string>
+    <string name="konfirmasi">Confirmation</string>
+    <string name="konfirmasi_hapus">Delete item</string>
+    <string name="pesan_konfirmasi_hapus">Are you sure you want to delete this item?</string>
+    <string name="startscreen">Welcome\n</string>
+    <string name="startscreen1">Lets capture the animals around you!</string>
+</resources>
